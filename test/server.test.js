@@ -73,14 +73,25 @@ describe('Server file', () => {
 				done()
 		})
 	})
+
 })
 
 	describe('/api/v1/artists/:id', () => {
 		it('should return a single artist', (done) => {
 			chai.request(app)
-				.get('/api/v1/artists/8') //change id when we add beforeEach
+				.get('/api/v1/artists/8')
 				.end((error, response) => {
 					expect(response).to.have.status(200)
+					done()
+				})
+		})
+
+		it('should delete an artist when a DELETE request is made', (done) => {
+
+			chai.request(app)
+				.delete('/api/v1/artists/312')
+				.end((error, response) => {
+					expect(response).to.have.status(201)
 					done()
 				})
 		})
@@ -89,9 +100,19 @@ describe('Server file', () => {
 	describe('/api/v1/albums/:id', () => {
 		it('should return a single album', (done) => {
 			chai.request(app)
-				.get('/api/v1/albums/5') //change id when we add beforeEach
+				.get('/api/v1/albums/5')
 				.end((error, response) => {
 					expect(response).to.have.status(200)
+					done()
+				})
+		})
+
+		it('should delete an album when a DELETE request is made', (done) => {
+
+			chai.request(app)
+				.delete('/api/v1/albums/2235')
+				.end((error, response) => {
+					expect(response).to.have.status(201)
 					done()
 				})
 		})
