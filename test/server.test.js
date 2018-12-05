@@ -29,7 +29,7 @@ describe('Server file', () => {
 			})
 		})
 
-		it.skip('should add a new artist when a post request is made', (done) => {
+		it('should add a new artist when a post request is made', (done) => {
 			const newArtist = {
 				name: 'Kygo',
 				genre: 'Pop',
@@ -41,8 +41,7 @@ describe('Server file', () => {
 				.set('Content-Type', 'application/json')
 				.end((error, response) => {
 					expect(response).to.have.status(201)
-					// expect('artists'.length).to.equal(4)
-					expect('artists').to.deep.include(newArtist)
+					expect(typeof response.body.id).to.equal('number')
 					done()
 			})
 		})
@@ -70,8 +69,7 @@ describe('Server file', () => {
 			.set('Content-Type', 'application/json')
 			.end((error, response) => {
 				expect(response).to.have.status(201)
-				// expect('albums'.length).to.equal(4)
-				// expect('albums').to.deep.include(newAlbum)
+				expect(typeof response.body.id).to.equal('number')
 				done()
 		})
 	})
