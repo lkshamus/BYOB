@@ -125,6 +125,32 @@ app.delete('/api/v1/artists/:id', (request, response) => {
   })
 })
 
+app.put('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+
+  database('artists').where('id', request.params.id)
+    .update({name: request.body.name, genre: request.body.genre})
+    .then(() => {
+      response.status(200).json(id);
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+});
+
+app.put('/api/v1/albums/:id', (request, response) => {
+  const { id } = request.params
+
+  database('albums').where('id', request.params.id)
+    .update({title: request.body.title, release_date: request.body.release_date})
+    .then(() => {
+      response.status(200).json(id);
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+});
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on localhost:${app.get('port')}.`);
 });
