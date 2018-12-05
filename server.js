@@ -46,6 +46,30 @@ app.post('/api/v1/artists', (request, response) => {
   }
 })
 
+app.post('/api/v1/albums', (request, response) => {
+  const album = request.body;
+
+  if (!album) {
+    return response.status(422).json({ error: 'No album object provided' })
+  }
+
+  for (let requiredParameter of ['title', 'release_date']) {
+    if (!album[requiredParameter]) {
+      return response.status(422).json({error: `Expected format: {title: <STRING>, releaseDate: 
+        <STRING>. Missing the required parameter of ${requiredParameter}.`})
+    }
+
+  }
+
+  database('albums').insert(album, 'id')
+    .then(album => {
+        response.status(201).json({ id: album[0] })
+      })
+      .catch(error => {
+        response.status(500).json({ error });
+      });
+})
+
 app.get('/api/v1/artists/:id', (request, response) => {
   const { id } = request.params
 
@@ -72,6 +96,17 @@ app.get('/api/v1/albums/:id', (request, response) => {
     .catch(error => console.log(`Error fetching artist: ${error.message}`))
 })
 
+app.delete('/api/v1/albums/:id', (request, response) => {
+  const { id } = request.params
+
+  database('albums').where('id', id).del()
+  .then(album => {
+    response.status(201).json(id)
+  })
+  .catch(error => {
+    response.status(500).json({error: error.message})
+  })
+})
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on localhost:${app.get('port')}.`);
