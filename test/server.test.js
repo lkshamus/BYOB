@@ -10,23 +10,15 @@ chai.use(chaiHTTP)
 
 describe('Server file', () => {
 	describe('/api/v1/artists', () => {
-		// beforeEach(done => {
-  //  			database.migrate.rollback()
-  //  			.then(()=> {
-  //    		database.migrate.latest()
-  //    		.then(()=> {
-  //      		return database.seed.run()
-  //      		.then(()=> {
-  //        	done();
-  //      		});
-  //    	  });
-  //  		});
- 	//   });
-
-		// beforeEach((done) => {
-		// 	database.migrate.rollback()
-
-		// })
+		beforeEach(done => {
+     		database.migrate.latest()
+     		.then(()=> {
+       		return database.seed.run()
+       		.then(()=> {
+         	done();
+       		});
+     	  });
+ 	  });
 
 		it('should return a 200 status', (done) => {
 			chai.request(app)
@@ -65,7 +57,25 @@ describe('Server file', () => {
 					done()
 			})
 		})
+
+		it('should add a new album when a post request is made', (done) => {
+		const newAlbum = {
+			title: 'Kids in Love',
+			release_date: 2017
+		}
+
+		chai.request(app)
+			.post('/api/v1/albums')
+			.send(newAlbum)
+			.set('Content-Type', 'application/json')
+			.end((error, response) => {
+				expect(response).to.have.status(201)
+				// expect('albums'.length).to.equal(4)
+				// expect('albums').to.deep.include(newAlbum)
+				done()
+		})
 	})
+})
 
 	describe('/api/v1/artists/:id', () => {
 		it('should return a single artist', (done) => {
