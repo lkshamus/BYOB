@@ -13,6 +13,10 @@ app.locals.title = 'Album Finder'
 
 app.set('port', process.env.PORT || 3000);
 
+app.get('/', (request, response) => {
+  response.send('BYOB!');
+});
+
 app.get('/api/v1/artists', (request, response) => {
   database('artists').select()
     .then(artists => {
@@ -100,6 +104,19 @@ app.delete('/api/v1/albums/:id', (request, response) => {
   const { id } = request.params
 
   database('albums').where('id', id).del()
+  .then(album => {
+    response.status(201).json(id)
+  })
+  .catch(error => {
+    response.status(500).json({error: error.message})
+  })
+})
+
+app.delete('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+
+  database('albums').where('artist_id', id).del()
+  .then( () => database('artists').where('id', id).del())
   .then(album => {
     response.status(201).json(id)
   })
