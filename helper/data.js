@@ -140,6 +140,203 @@ const artists = [
       {name: 'Suncity', year: 2018}
     ]
   },
+  {
+  artist: 'Queen',
+  genre: 'Classic Rock',
+  albums: [
+    {name: 'Queen', year: 1973},
+    {name: 'Queen II', year: 1974},
+    {name: 'Sheer Heart Attack', year: 1974},
+    {name: 'A Night At The Opera', year: 1975},
+    {name: 'A Day At The Races', year: 1976},
+    {name: 'News Of The World', year: 1977},
+    {name: 'Jazz', year: 1979}
+    ]
+  },
+  {
+  artist: 'Ariana Grande',
+  genre: 'Pop',
+  albums: [
+    {name: 'Yours Truly', year: 2013},
+    {name: 'My Everything', year: 2014},
+    {name: 'Dangerous Woman', year: 2016},
+    {name: 'Thank U, Next', year: 2018},
+    {name: 'Sweetener', year: 2018}
+    ] 
+  },
+  {
+    artist: 'Khalid',
+    genre: 'R&B',
+    albums: [
+      {name: 'American Teen', year: 2017},
+      {name: 'Suncity', year: 2018}
+    ]
+  },
+  {
+    artist: 'Mariah Carey',
+    genre: 'hip-hop',
+    albums: [
+      {name: 'Mariah Carey', year: 1990},
+      {name: 'Emotions', year: 1991},
+      {name: 'Music Box', year: 1993},
+      {name: 'Merry Christman', year: 1994},
+      {name: 'Daydream', year: 1995},
+      {name: 'Butterfly', year: 1997},
+      {name: 'Rainbow', year: 1999},
+      {name: 'Glitter', year: 2001},
+      {name: 'Charmbracelet', year: 2002},
+      {name: 'The Remixes', year: 2003},
+      {name: 'The Emancipation of Mimi', year: 2005},
+      {name: 'E=MC2', year: 2008},
+      {name: 'Memoirs of an Imperfect Angel'}
+    ]
+  },
+  {
+    artist: 'Lady Gaga',
+    genre: 'pop',
+    albums: [
+      {name: 'The Fame', year: 2008},
+      {name: 'The Fame Monster', year: 2009},
+      {name: 'The Remix', year: 2010},
+      {name: 'Born This Way', year: 2011},
+      {name: 'ARTPOP', year: 2013},
+      {name: 'Cheek to Cheek', year: 2014},
+      {name: 'Joanne', year: 2016},
+      {name: 'A Star Is Born', year: 2018}
+    ]
+  },
+  {
+    artist: 'XXXTENTACION',
+    genre: 'hip-hop',
+    albums: [
+      {name: 'Revenge', year: 2017},
+      {name: '17', year: 2017},
+      {name: '?', year: 2018},
+      {name: 'SKINS', year: 2018}
+    ]
+  },
+  {
+    artist: 'Lauren Daigle',
+    genre: 'Christian music',
+    albums: [
+      {name: 'How Can It Be', year: 2015},
+      {name: 'Behold', year: 2016},
+      {name: 'Look Up Child', year: 2018}
+    ]
+  },
+  {
+    artist: 'Juice WRLD',
+    genre: 'Trap music',
+    albums: [
+      {name: 'Goodbye & Good Riddance', year: 2018},
+      {name: 'Wrld on Drugs', year: 2018},
+      {name: 'Bury Me Alive', year: 2018}
+    ]
+  },
+  {
+    artist: 'Luke Combs',
+    genre: 'Country',
+    albums: [
+      {name: 'This Ones for You', year: 2017}
+    ]
+  },
+  {
+    artist: 'Kane Brown',
+    genre: 'Country',
+    albums: [
+      {name: 'Kane Brown', year: 2017},
+      {name: 'Experiment', year: 2018}
+    ]
+  }, 
+  {
+    artist: 'Dan + Shay',
+    genre: 'Country',
+    albums: [
+      {name: 'Where It All Began', year: 2014},
+      {name: 'Obsessed', year: 2016},
+      {name: 'Dan + Shay', year: 2018}
+    ]
+  },
+  {
+    artist: 'Ella Mai',
+    genre: 'hip-hop',
+    albums: [
+      {name: 'Ella Mai', year: 2018}
+    ]
+  },
+  {
+    artist: 'Ed Sheeran',
+    genre: 'Pop',
+    albums: [
+      {name: '+', year: 2011},
+      {name: 'x', year: 2014},
+      {name: '÷', year: 2017}
+    ]
+  },
+  {
+    artist: 'Lil Baby',
+    genre: 'Trap music',
+    albums: [
+      {name: 'Perfect Timing', year: 2017},
+      {name: 'Harder Than Hard', year: 2017},
+      {name: '2 The Hard Way', year: 2017},
+      {name: 'Too Hard', year: 2017},
+      {name: 'Harder Than Ever', year: 2018},
+      {name: 'Drip Harder', year: 2018},
+      {name: 'Street Gossip', year: 2018}
+    ]
+  }, 
+  {
+    artist: 'Trans-Siberian Orchestra',
+    genre: 'Symphonic metal',
+    albums: [
+      {name: 'Christmas Eve and Other Stories', year: 1996},
+      {name: 'The Christmas Attic', year: 1998},
+      {name: 'Beethovens Last Night', year: 2000},
+      {name: 'The Lost Christmas Eve', year: 2004},
+      {name: 'Night Castle', year: 2009},
+      {name: 'Letters From The Labrinth', year: 2015},
+      {name: 'The Ghosts of Christmas Eve', year: 2016}
+    ]
+  },
+  {
+    artist: 'Eminem',
+    genre: 'hip-hop',
+    albums: [
+      {name: 'The Slim Shady LP', year: 1999},
+      {name: 'The Marshall Mathers LP', year: 2000},
+      {name: 'The Eminem Show', year: 2002},
+      {name: 'Encore', year: 2004},
+      {name: 'Eminem Presents The Re-Up', year: 2006},
+      {name: 'Relapse', year: 2009},
+      {name: 'Recovery', year: 2010},
+      {name: 'The Marshall Mathers LP2', year: 2013},
+      {name: 'Revival', year: 2017},
+      {name: 'Kamikaze', year: 2018}
+    ]
+  },
+  {
+    artist: 'Shawn Mendes',
+    genre: 'Pop',
+    albums: [
+      {name: 'Handwritten', year: 2015},
+      {name: 'Illuminate', year: 2016},
+      {name: 'Shawn Mendes', year: 2018}
+    ]
+  },
+  {
+    artist: 'Kodak Black',
+    genre: 'Hip-hop',
+    albums: [
+      {name: 'Project Baby', year: 2013},
+      {name: 'Heart of the Projects', year: 2014},
+      {name: 'Institution', year: 2015},
+      {name: 'Lil Big Pac', year: 2016},
+      {name: 'Painting Pictures', year: 2017},
+      {name: 'Project Baby 2: All Grown Up', year: 2017},
+      {name: 'Heart Break Kodak', year: 2018}
+    ]
+  }
 ]
 
 module.exports = artists
