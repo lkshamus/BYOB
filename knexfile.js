@@ -2,9 +2,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: {
-      filename: './dev.sqlite3'
-    },
+    connection: 'postgres://localhost/laura',
     migrations: {
       directory: './db/migrations',
     },
