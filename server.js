@@ -36,9 +36,9 @@ app.post('/api/v1/artists', (request, response) => {
   if(missingProperties.length) {
     response.status(422).send({ message: `Missing ${missingProperties} in request` })
   } else {
-    database('projects').insert(project, 'id')
-      .then(projectIds => {
-        response.status(201).json({ id: projectIds[0] })
+    database('artists').insert(artist, 'id')
+      .then(artistIds => {
+        response.status(201).json({ id: artistIds[0] })
       })
       .catch(error => {
         response.status(500).json({ error: error.message })
