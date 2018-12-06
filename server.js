@@ -18,17 +18,33 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/artists', (request, response) => {
-  database('artists').select()
+
+  if(request.query.name) {
+    let nameQuery = request.query.name
+    let genreQuery = request.query.genre
+    // response.send({name: nameQuery, genre: genreQuery})
+    database('artists').where("name", nameQuery).select()
     .then(artists => {
       response.status(200).json(artists)
     })
     .catch(error => {
       response.status(500).json({ error: error.message })
     })
+  } else {
+    database('artists').select()
+    .then(artists => {
+      response.status(200).json(artists)
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+  }
 })
+
 
 app.post('/api/v1/artists', (request, response) => {
   const artist = request.body
+
   let missingProperties = []
 
   for(let requiredProperty of ['name', 'genre']) {

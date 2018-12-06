@@ -45,6 +45,20 @@ describe('Server file', () => {
 					done()
 			})
 		})
+
+		it('should return a status of 422 if artist entry is incomplete', (done) => {
+      const newArtist = {
+        name: 'Brand New'
+      }
+
+      chai.request(app)
+        .post('/api/v1/artists')
+        .send(newArtist)
+        .end((error, response) => {
+          expect(response).to.have.status(422)
+          done()
+        })
+    })
 	})
 
 	describe('/api/v1/albums', () => {
@@ -73,6 +87,20 @@ describe('Server file', () => {
 				done()
 		})
 	})
+
+		it('should return a status of 422 if album entry is incomplete', (done) => {
+      const newAlbum = {
+        name: 'Tell All Your Friends'
+      }
+
+      chai.request(app)
+        .post('/api/v1/albums')
+        .send(newAlbum)
+        .end((error, response) => {
+          expect(response).to.have.status(422)
+          done()
+        })
+    })
 
 })
 
