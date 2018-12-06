@@ -22,7 +22,14 @@ app.get('/api/v1/artists', (request, response) => {
   if(request.query.name) {
     let nameQuery = request.query.name
     let genreQuery = request.query.genre
-    response.send({name: nameQuery, genre: genreQuery})
+    // response.send({name: nameQuery, genre: genreQuery})
+    database('artists').where("name", nameQuery).select()
+    .then(artists => {
+      response.status(200).json(artists)
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
   } else {
     database('artists').select()
     .then(artists => {
