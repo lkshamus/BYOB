@@ -226,7 +226,7 @@ Expect response to be:
 }
 ````
 
-**To edit an album from an artist of your choice:**
+**To edit an album of your choice:**
 
 ````PUT /api/v1/albums/:id````
 
@@ -242,7 +242,7 @@ release_date:[boolean]
 
 Expect response to be:
 
-````Status: 200```
+````Status: 200````
 
 ````
 {
