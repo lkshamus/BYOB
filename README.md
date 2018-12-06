@@ -43,7 +43,7 @@ Expect response to be:
   ...
 {
  ````
-
+ 
 **To return a specific artist:**
 
 ````GET /api/v1/artists/:id````
@@ -70,6 +70,31 @@ Expect response to be:
       {name: 'A Star Is Born', year: 2018}
     ]
 }
+````
+**To search for a particular artist without having their id**
+
+````GET /api/v1/artists?name= ```` write artist name next to the equal sign
+
+example: 
+
+````/api/v1/artists?name=Queen````
+
+Expect response to be:
+
+````Status: 200````
+
+Your search result will return: 
+
+```` 
+[
+    {
+        "id": 27,
+        "name": "Queen",
+        "genre": "Classic Rock",
+        "created_at": "2018-12-05T15:46:25.764Z",
+        "updated_at": "2018-12-05T15:46:25.764Z"
+    }
+]
 ````
 
 **To return all albums:**
