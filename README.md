@@ -5,7 +5,7 @@ BYOB is an API that provides data about the top 30 music artists and their album
 
 ## Installation
 
-To get started, clone down this repo and run ````npm install````. Start the server with node ````server.js```` (or nodemon if you have it installed).
+To get started, clone down this repo and run ````npm install````. Start the server with ````node server.js```` (or nodemon if you have it installed).
 
 ## Endpoints
 
