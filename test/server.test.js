@@ -95,6 +95,21 @@ describe('Server file', () => {
 					done()
 				})
 		})
+
+		it('should update artist entry when a post request is made', (done) => {
+			const updatedArtist = {
+				name: 'Travis Scottland',
+				genre: 'Pop'
+			}
+
+		chai.request(app)
+			.put('/api/v1/artists/312')
+			.send(updatedArtist)
+			.end((error, response) => {
+				expect(response).to.have.status(200)
+				done()
+			})
+		})
 	})
 
 	describe('/api/v1/albums/:id', () => {
@@ -115,6 +130,21 @@ describe('Server file', () => {
 					expect(response).to.have.status(201)
 					done()
 				})
+		})
+
+		it('should update an album entry when a post request is made', (done) => {
+			const updatedAlbum = {
+				title: 'Sheer Attack',
+				release_date: 2000
+			}
+
+		chai.request(app)
+			.put('/api/v1/albums/2235')
+			.send(updatedAlbum)
+			.end((error, response) => {
+				expect(response).to.have.status(200)
+				done()
+			})
 		})
 	})
 })
