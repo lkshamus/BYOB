@@ -48,6 +48,9 @@ Expect response to be:
 
 ````GET /api/v1/artists/:id````
 
+You must pass the artist id in as a parameter to the endpoint.
+
+
 Expect response to be:
 
 ````Status: 200````
@@ -98,7 +101,10 @@ Expect response to be:
 
 **To return all albums from an artist of your choice:**
 
-````GET /api/v1/artists````
+````GET /api/v1/albums/:id````
+
+You must pass the album id in as a parameter to the endpoint.
+
 
 Expect response to be: 
 
@@ -124,8 +130,8 @@ Expect response to be:
 Body of request must be in JSON format with the following propeties:
 
 ````
-name[string],
-genre[string]
+name:[string],
+genre:[string]
 ````
 
 Expect response to be:
@@ -144,8 +150,8 @@ Expect response to be:
 Body of request must be in JSON format with the following properties:
 
 ````
-title[string],
-release_date[boolean]
+title:[string],
+release_date:[boolean]
 ````
 
 Expect response to be:
@@ -166,6 +172,7 @@ Expect response to be:
 
 You must pass the artist id in as a parameter to the endpoint.
 
+
 Expect response to be:
 
 ````Status: 201````
@@ -180,7 +187,8 @@ Expect response to be:
 
 ````DELETE /api/v1/albums/:id````
 
-You must pass the album id in as a parameter to the endpoin.
+You must pass the album id in as a parameter to the endpoint.
+
 
 Expect response to be:
 
@@ -200,11 +208,12 @@ Expect response to be:
 
 You must pass the artist id in as a parameter to the endpoint.
 
+
 Body of request must be in JSON format with the following propeties:
 
 ````
-name[string],
-genre[string]
+name:[string],
+genre:[string]
 ````
 
 Expect response to be:
@@ -223,11 +232,12 @@ Expect response to be:
 
 You must the album id in as a parameter to the endpoint.
 
+
 Body of request must be in JSON format with the following properties:
 
 ````
-title[string],
-release_date[boolean]
+title:[string],
+release_date:[boolean]
 ````
 
 Expect response to be:
