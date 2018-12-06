@@ -124,7 +124,19 @@ describe('Server file', () => {
 				})
 		})
 
-		it('should update artist entry when a post request is made', (done) => {
+		it('should return a 500 status code if there is no artist specified to delete', (done) => {
+			const deleteArtist = {}
+
+			chai.request(app)
+				.delete('/api/v1/artists/:id')
+				.send(deleteArtist)
+				.end((error, response) => {
+					expect(response).to.have.status(500)
+					done()
+				})
+		})
+
+		it('should update artist entry when a put request is made', (done) => {
 			const updatedArtist = {
 				name: 'Travis Scottland',
 				genre: 'Pop'
@@ -137,6 +149,18 @@ describe('Server file', () => {
 				expect(response).to.have.status(200)
 				done()
 			})
+		})
+
+		it('should return a 500 status code if there no update specified for artists', (done) => {
+			const updateArtist = {}
+
+			chai.request(app)
+				.delete('/api/v1/artists/:id')
+				.send(updateArtist)
+				.end((error, response) => {
+					expect(response).to.have.status(500)
+					done()
+				})
 		})
 	})
 
@@ -160,7 +184,19 @@ describe('Server file', () => {
 				})
 		})
 
-		it('should update an album entry when a post request is made', (done) => {
+		it('should return a 500 status code if there is no album specified to delete', (done) => {
+			const deleteAlbum = {}
+
+			chai.request(app)
+				.delete('/api/v1/albums/:id')
+				.send(deleteAlbum)
+				.end((error, response) => {
+					expect(response).to.have.status(500)
+					done()
+				})
+		})
+
+		it('should update an album entry when a put request is made', (done) => {
 			const updatedAlbum = {
 				title: 'Sheer Attack',
 				release_date: 2000
@@ -173,6 +209,18 @@ describe('Server file', () => {
 				expect(response).to.have.status(200)
 				done()
 			})
+		})
+
+		it('should return a 500 status code if there no update specified for albums', (done) => {
+			const updateAlbum = {}
+
+			chai.request(app)
+				.delete('/api/v1/albums/:id')
+				.send(updateAlbum)
+				.end((error, response) => {
+					expect(response).to.have.status(500)
+					done()
+				})
 		})
 	})
 })
