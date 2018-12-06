@@ -56,20 +56,15 @@ Expect response to be:
 ````Status: 200````
 
 ```` 
-{
-    artist: 'Lady Gaga',
-    genre: 'pop',
-    albums: [
-      {name: 'The Fame', year: 2008},
-      {name: 'The Fame Monster', year: 2009},
-      {name: 'The Remix', year: 2010},
-      {name: 'Born This Way', year: 2011},
-      {name: 'ARTPOP', year: 2013},
-      {name: 'Cheek to Cheek', year: 2014},
-      {name: 'Joanne', year: 2016},
-      {name: 'A Star Is Born', year: 2018}
-    ]
-}
+[
+    {
+        "id": 17,
+        "name": "Mariah Carey",
+        "genre": "hip-hop",
+        "created_at": "2018-12-05T15:41:02.011Z",
+        "updated_at": "2018-12-05T15:41:02.011Z"
+    }
+]
 ````
 **To search for a particular artist without having their id**
 
