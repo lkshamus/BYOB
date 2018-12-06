@@ -278,4 +278,4 @@ Expect response to be:
 ````
 
 ## Contributors 
-[Haley Jacobs] & Laura Shamus
+[Haley Jacobs](https://github.com/hljacobs5) & Laura Shamus
