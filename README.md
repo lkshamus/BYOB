@@ -96,22 +96,25 @@ Expect response to be:
 ````Status: 200````
 
 ````   
+[
     {
-        "id": 80,
-        "title": "Michael Buble",
-        "release_date": "2003",
-        "artist_id": 15,
-        "created_at": "2018-12-05T15:46:25.797Z",
-        "updated_at": "2018-12-05T15:46:25.797Z"
+        "id": 1,
+        "title": "Queen",
+        "release_date": "1973",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.019Z",
+        "updated_at": "2018-12-05T15:41:02.019Z"
     },
     {
-        "id": 81,
-        "title": "Its Time",
-        "release_date": "2005",
-        "artist_id": 15,
-        "created_at": "2018-12-05T15:46:25.798Z",
-        "updated_at": "2018-12-05T15:46:25.798Z"
+        "id": 2,
+        "title": "Queen II",
+        "release_date": "1974",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.019Z",
+        "updated_at": "2018-12-05T15:41:02.019Z"
     },
+   ...
+]
 ````
 
 **To return all albums from an artist of your choice:**
@@ -146,8 +149,10 @@ Expect response to be:
 Body of request must be in JSON format with the following propeties:
 
 ````
-name:[string],
-genre:[string]
+{
+    "name":[string],
+    "genre":[string]
+}
 ````
 
 Expect response to be:
@@ -166,8 +171,10 @@ Expect response to be:
 Body of request must be in JSON format with the following properties:
 
 ````
-title:[string],
-release_date:[boolean]
+{
+    "title":[string],
+    "release_date":[boolean]
+}
 ````
 
 Expect response to be:
@@ -228,8 +235,10 @@ You must pass the artist id in as a parameter to the endpoint.
 Body of request must be in JSON format with the following propeties:
 
 ````
-name:[string],
-genre:[string]
+{
+    "name":[string],
+    "genre":[string]
+}
 ````
 
 Expect response to be:
@@ -252,8 +261,10 @@ You must the album id in as a parameter to the endpoint.
 Body of request must be in JSON format with the following properties:
 
 ````
-title:[string],
-release_date:[boolean]
+{
+    "title":[string],
+    "release_date":[boolean]
+}
 ````
 
 Expect response to be:
