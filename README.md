@@ -276,3 +276,6 @@ Expect response to be:
   "id": 8
 }
 ````
+
+## Contributors 
+[Haley Jacobs] & Laura Shamus
