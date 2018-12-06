@@ -20,28 +20,23 @@ Expect response to be:
 ````Status: 200````
 
 ````
-{
-  artist: 'Queen',
-  genre: 'Classic Rock',
-  albums: [
-    {name: 'Queen', year: 1973},
-    {name: 'Queen II', year: 1974},
-    {name: 'Sheer Heart Attack', year: 1974},
-    {name: 'A Night At The Opera', year: 1975},
-    {name: 'A Day At The Races', year: 1976},
-    {name: 'News Of The World', year: 1977},
-    {name: 'Jazz', year: 1979},
-    {name: 'The Game', year: 1980},
-    {name: 'Flash Gordon', year: 1980},
-    {name: 'Hot Space', year: 1982},
-    {name: 'The Works', year: 1984},
-    {name: 'A Kind Of Magic', year: 1986},
-    {name: 'The Miracle', year: 1989},
-    {name: 'Innuendo', year: 1991},
-    {name: 'Made in Heaven', year: 1995}
-  ]},
+[
+    {
+        "id": 1,
+        "name": "Queen",
+        "genre": "Classic Rock",
+        "created_at": "2018-12-05T15:41:01.994Z",
+        "updated_at": "2018-12-05T15:41:01.994Z"
+    },
+    {
+        "id": 3,
+        "name": "Pentatonix",
+        "genre": "Pop",
+        "created_at": "2018-12-05T15:41:02.003Z",
+        "updated_at": "2018-12-05T15:41:02.003Z"
+    },
   ...
-{
+]
  ````
  
 **To return a specific artist:**
