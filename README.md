@@ -128,11 +128,12 @@ Expect response to be:
 ````
 [
     {
-        "id": 16,
-        "name": "Travis Scott",
-        "genre": "Hip-Hop",
-        "created_at": "2018-12-05T15:46:25.746Z",
-        "updated_at": "2018-12-05T15:46:25.746Z"
+        "id": 5,
+        "title": "A Day At The Races",
+        "release_date": "1976",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.021Z",
+        "updated_at": "2018-12-05T15:41:02.021Z"
     }
 ]
 ````
