@@ -218,7 +218,7 @@ genre:[string]
 
 Expect response to be:
 
-````Status: 200```
+````Status: 200````
 
 ````
 {
