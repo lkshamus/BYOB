@@ -11,7 +11,7 @@ To get started, clone down this repo and run ````npm install````. Start the serv
 
 ## Get
 
-**To return all artists:
+**To return all artists:**
 
 ````GET /api/v1/artists````
 
@@ -44,7 +44,7 @@ Expect response to be:
 {
  ````
 
-**To return a specific artist:
+**To return a specific artist:**
 
 ````GET /api/v1/artists/:id````
 
@@ -69,7 +69,7 @@ Expect response to be:
 }
 ````
 
-**To return all albums:
+**To return all albums:**
 
 ````GET /api/v1/albums````
 
@@ -96,7 +96,7 @@ Expect response to be:
     },
 ````
 
-**To return all albums from an artist of your choice:
+**To return all albums from an artist of your choice:**
 
 ````GET /api/v1/artists````
 
@@ -117,7 +117,7 @@ Expect response to be:
 ````
 ## Post
 
-**To add an artist:
+**To add an artist:**
 
 ````POST /api/v1/artists````
 
@@ -137,7 +137,7 @@ Expect response to be:
 }
 ````
 
-**To add an album to an artist of your choice:
+**To add an album to an artist of your choice:**
 
 ````POST /api/v1/albums````
 
@@ -160,7 +160,7 @@ Expect response to be:
 
 ## Delete
 
-**To delete an artist:
+**To delete an artist:**
 
 ````DELETE /api/v1/artists/:id````
 
@@ -176,7 +176,7 @@ Expect response to be:
 }
 ````
 
-**To delete an album:
+**To delete an album:**
 
 ````DELETE /api/v1/albums/:id````
 
@@ -194,7 +194,7 @@ Expect response to be:
 
 ## Put
 
-**To edit an artist of your choice:
+**To edit an artist of your choice:**
 
 ````PUT /api/v1/artists/:id````
 
@@ -217,7 +217,7 @@ Expect response to be:
 }
 ````
 
-**To edit an album from an artist of your choice:
+**To edit an album from an artist of your choice:**
 
 ````PUT /api/v1/albums/:id````
 
