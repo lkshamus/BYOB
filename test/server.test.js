@@ -155,7 +155,7 @@ describe('Server file', () => {
 			const updateArtist = {}
 
 			chai.request(app)
-				.delete('/api/v1/artists/:id')
+				.put('/api/v1/artists/:id')
 				.send(updateArtist)
 				.end((error, response) => {
 					expect(response).to.have.status(500)
@@ -215,7 +215,7 @@ describe('Server file', () => {
 			const updateAlbum = {}
 
 			chai.request(app)
-				.delete('/api/v1/albums/:id')
+				.put('/api/v1/albums/:id')
 				.send(updateAlbum)
 				.end((error, response) => {
 					expect(response).to.have.status(500)

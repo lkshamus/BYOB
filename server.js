@@ -17,6 +17,8 @@ app.get('/', (request, response) => {
   response.send('BYOB!');
 });
 
+
+// /api/v1/artists
 app.get('/api/v1/artists', (request, response) => {
 
   if(request.query.name) {
@@ -38,7 +40,6 @@ app.get('/api/v1/artists', (request, response) => {
     })
   }
 })
-
 
 app.post('/api/v1/artists', (request, response) => {
   const artist = request.body
@@ -64,6 +65,41 @@ app.post('/api/v1/artists', (request, response) => {
   }
 })
 
+app.get('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+
+  database('artists').where('id', id).select()
+    .then(artist => response.status(200).json(artist))
+    .catch(error => console.log(`Error fetching artist: ${error.message}`))
+})
+
+app.delete('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+
+  database('albums').where('artist_id', id).del()
+  .then( () => database('artists').where('id', id).del())
+  .then(album => {
+    response.status(201).json(id)
+  })
+  .catch(error => {
+    response.status(500).json({error: error.message})
+  })
+})
+
+app.put('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+
+  database('artists').where('id', request.params.id)
+    .update({name: request.body.name, genre: request.body.genre})
+    .then(() => {
+      response.status(200).json(id);
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+});
+
+// /api/v1/albums 
 app.post('/api/v1/albums', (request, response) => {
   const album = request.body;
 
@@ -86,14 +122,6 @@ app.post('/api/v1/albums', (request, response) => {
       .catch(error => {
         response.status(500).json({ error });
       });
-})
-
-app.get('/api/v1/artists/:id', (request, response) => {
-  const { id } = request.params
-
-  database('artists').where('id', id).select()
-    .then(artist => response.status(200).json(artist))
-    .catch(error => console.log(`Error fetching artist: ${error.message}`))
 })
 
 app.get('/api/v1/albums', (request, response) => {
@@ -125,32 +153,6 @@ app.delete('/api/v1/albums/:id', (request, response) => {
     response.status(500).json({error: error.message})
   })
 })
-
-app.delete('/api/v1/artists/:id', (request, response) => {
-  const { id } = request.params
-
-  database('albums').where('artist_id', id).del()
-  .then( () => database('artists').where('id', id).del())
-  .then(album => {
-    response.status(201).json(id)
-  })
-  .catch(error => {
-    response.status(500).json({error: error.message})
-  })
-})
-
-app.put('/api/v1/artists/:id', (request, response) => {
-  const { id } = request.params
-
-  database('artists').where('id', request.params.id)
-    .update({name: request.body.name, genre: request.body.genre})
-    .then(() => {
-      response.status(200).json(id);
-    })
-    .catch(error => {
-      response.status(500).json({ error: error.message })
-    })
-});
 
 app.put('/api/v1/albums/:id', (request, response) => {
   const { id } = request.params
