@@ -9,7 +9,7 @@ To get started, clone down this repo and run ````npm install````. Start the serv
 
 ## Endpoints
 
-## Get
+## /api/v1/artists
 
 **To return all artists:**
 
@@ -87,6 +87,72 @@ Your search result will return:
 ]
 ````
 
+
+````POST /api/v1/artists````
+
+Body of request must be in JSON format with the following propeties:
+
+````
+{
+    "name":[string],
+    "genre":[string]
+}
+````
+
+Expect response to be:
+````Status: 201````
+
+````
+{
+  "id": 5
+}
+
+````
+**To delete an artist:**
+
+````DELETE /api/v1/artists/:id````
+
+You must pass the artist id in as a parameter to the endpoint.
+
+
+Expect response to be:
+
+````Status: 201````
+
+````
+{
+  "id": 3
+}
+````
+**To edit an artist of your choice:**
+
+````PUT /api/v1/artists/:id````
+
+You must pass the artist id in as a parameter to the endpoint.
+
+
+Body of request must be in JSON format with the following propeties:
+
+````
+{
+    "name":[string],
+    "genre":[string]
+}
+````
+
+Expect response to be:
+
+````Status: 200````
+
+````
+{
+  "id": 9
+}
+````
+
+
+## /api/v1/albums
+
 **To return all albums:**
 
 ````GET /api/v1/albums````
@@ -140,29 +206,9 @@ Expect response to be:
     }
 ]
 ````
-## Post
+
 
 **To add an artist:**
-
-````POST /api/v1/artists````
-
-Body of request must be in JSON format with the following propeties:
-
-````
-{
-    "name":[string],
-    "genre":[string]
-}
-````
-
-Expect response to be:
-````Status: 201````
-
-````
-{
-  "id": 5
-}
-````
 
 **To add an album to an artist of your choice:**
 
@@ -187,25 +233,6 @@ Expect response to be:
 }
 ````
 
-## Delete
-
-**To delete an artist:**
-
-````DELETE /api/v1/artists/:id````
-
-You must pass the artist id in as a parameter to the endpoint.
-
-
-Expect response to be:
-
-````Status: 201````
-
-````
-{
-  "id": 3
-}
-````
-
 **To delete an album:**
 
 ````DELETE /api/v1/albums/:id````
@@ -223,33 +250,6 @@ Expect response to be:
 }
 ````
 
-## Put
-
-**To edit an artist of your choice:**
-
-````PUT /api/v1/artists/:id````
-
-You must pass the artist id in as a parameter to the endpoint.
-
-
-Body of request must be in JSON format with the following propeties:
-
-````
-{
-    "name":[string],
-    "genre":[string]
-}
-````
-
-Expect response to be:
-
-````Status: 200````
-
-````
-{
-  "id": 9
-}
-````
 
 **To edit an album of your choice:**
 
@@ -279,3 +279,5 @@ Expect response to be:
 
 ## Contributors 
 [Haley Jacobs](https://github.com/hljacobs5) & [Laura Shamus](https://github.com/lkshamus)
+
+
