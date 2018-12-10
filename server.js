@@ -17,6 +17,11 @@ app.get('/', (request, response) => {
   response.send('BYOB!');
 });
 
+app.use((request, response, next) => {
+  response.header('Access-Control-Allow-Origin', '*');
+  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+})
 
 // /api/v1/artists
 app.get('/api/v1/artists', (request, response) => {
