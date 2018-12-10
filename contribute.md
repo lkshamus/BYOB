@@ -12,5 +12,11 @@ The following is a set of guidelines for contributing to this repository.
 * You've rebased the latest changes from master into your branch and addressed any merge conflicts.
 * You've run the test suite and **all** tests are passing (if you break any tests, fix them).
 
+Submitting your PR:
+
+````
+git add .
+git commit -m "Your commit message here"
+````
 
 
