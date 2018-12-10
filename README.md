@@ -1,7 +1,9 @@
 # BYOB
 ## About the API
 
-BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests. For instructions on how to contribute, see [this file](https://github.com/lkshamus/BYOB/blob/master/CONTRIBUTING.md).
+BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests. 
+
+#### For instructions on how to contribute, see [this file](https://github.com/lkshamus/BYOB/blob/master/CONTRIBUTING.md).
 
 ## Getting Started
 
