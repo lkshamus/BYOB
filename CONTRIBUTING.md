@@ -19,4 +19,4 @@ git add .
 git commit -m "Your commit message here"
 ````
 
-
+For instructions on installation, refer to [this file](https://github.com/lkshamus/BYOB/blob/master/README.md).
