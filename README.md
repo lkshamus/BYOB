@@ -34,7 +34,39 @@ Start the server with
 ````node server.js````
 (or ````nodemon```` if you have it installed).
 
+### Create local database
+
+Create database in PostgreSQL: 
+
+````psql````
+
+````CREATE DATABASE albumfinder;````
+
+Run migrations using: 
+
+````knex migrate:latest ````
+
+Seed database:
+
+````knex seed:run````
+
 ## Running Tests
+
+#### Create local testing environment
+
+Create test database in PostgreSQL: 
+
+````psql````
+
+````CREATE DATABASE albumfindertests;````
+
+Run migrations using: 
+
+````NODE_ENV=test knex migrate:latest ````
+
+Seed test database:
+
+````NODE_ENV=test knex seed:run````
 
 To run the test suite
 
