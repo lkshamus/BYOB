@@ -141,19 +141,6 @@ const artists = [
     ]
   },
   {
-  artist: 'Queen',
-  genre: 'Classic Rock',
-  albums: [
-    {name: 'Queen', year: 1973},
-    {name: 'Queen II', year: 1974},
-    {name: 'Sheer Heart Attack', year: 1974},
-    {name: 'A Night At The Opera', year: 1975},
-    {name: 'A Day At The Races', year: 1976},
-    {name: 'News Of The World', year: 1977},
-    {name: 'Jazz', year: 1979}
-    ]
-  },
-  {
   artist: 'Ariana Grande',
   genre: 'Pop',
   albums: [
