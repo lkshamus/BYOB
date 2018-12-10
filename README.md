@@ -9,9 +9,11 @@ In order to use the api, you must have the following installed:
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://nodejs.org/en/)
 
-Clone down this repo ```` git clone https://github.com/lkshamus/BYOB.git ````
+Clone down this repo 
+```` git clone https://github.com/lkshamus/BYOB.git ````
 
-Next install dev dependencies ```` npm install ```` 
+Next install dev dependencies 
+```` npm install ```` 
 
 This will install 
 * express
@@ -22,7 +24,9 @@ This will install
 * chai
 * chai-http
 
-Start the server with ````node server.js```` (or ````nodemon```` if you have it installed).
+Start the server with
+````node server.js````
+(or ````nodemon```` if you have it installed).
 
 ## Endpoints
 
