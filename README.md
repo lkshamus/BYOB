@@ -34,7 +34,7 @@ Start the server with
 
 ## Running Tests
 
-To run the test suit 
+To run the test suite
 
 ````npm run test````
 
