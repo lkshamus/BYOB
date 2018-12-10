@@ -3,14 +3,14 @@
 
 BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests.
 
-# Getting Started
+## Getting Started
 
-#### Prerequisites 
+### Prerequisites 
 In order to use the api, you must have the following installed:
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://nodejs.org/en/)
 
-## Installation
+### Installation
 Clone down this repo 
 ```` git clone https://github.com/lkshamus/BYOB.git ````
 
