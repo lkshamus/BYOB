@@ -11,3 +11,6 @@ The following is a set of guidelines for contributing to this repository.
 * You've added any tests of your own to cover new or changed functionality.
 * You've rebased the latest changes from master into your branch and addressed any merge conflicts.
 * You've run the test suite and **all** tests are passing (if you break any tests, fix them).
+
+
+
