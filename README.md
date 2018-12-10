@@ -12,9 +12,11 @@ In order to use the api, you must have the following installed:
 
 ### Installation
 Clone down this repo 
+
 ```` git clone https://github.com/lkshamus/BYOB.git ````
 
 Next install dev dependencies 
+
 ```` npm install ```` 
 
 This will install 
@@ -29,6 +31,12 @@ This will install
 Start the server with
 ````node server.js````
 (or ````nodemon```` if you have it installed).
+
+## Running Tests
+
+To run the test suit 
+
+````npm run test````
 
 ## Endpoints
 
