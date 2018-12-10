@@ -52,7 +52,7 @@ Seed database:
 
 ## Running Tests
 
-#### Create local testing environment
+### Create local testing environment
 
 Create test database in PostgreSQL: 
 
