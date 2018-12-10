@@ -15,18 +15,18 @@ Clone down this repo
 
 ```` git clone https://github.com/lkshamus/BYOB.git ````
 
-Next install dev dependencies 
+Next install dependencies 
 
 ```` npm install ```` 
 
 This will install 
-* express
-* body-parser
-* knex
-* postgres
-* mocha
-* chai
-* chai-http
+* Express
+* Body-parser
+* Knex
+* PostgreSQL Database
+* Mocha
+* Chai
+* Chai HTTP
 
 Start the server with
 ````node server.js````
