@@ -9,7 +9,20 @@ In order to use the api, you must have the following installed:
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://nodejs.org/en/)
 
-To get started, clone down this repo and run ````npm install````. Start the server with ````node server.js```` (or ````nodemon```` if you have it installed).
+Clone down this repo ```` git clone https://github.com/lkshamus/BYOB.git ````
+
+Next install dev dependencies ```` npm install ```` 
+
+This will install 
+* express
+* body-parser
+* knex
+* postgres
+* mocha
+* chai
+* chai-http
+
+Start the server with ````node server.js```` (or ````nodemon```` if you have it installed).
 
 ## Endpoints
 
