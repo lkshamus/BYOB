@@ -78,6 +78,31 @@ app.get('/api/v1/artists/:id', (request, response) => {
     .catch(error => console.log(`Error fetching artist: ${error.message}`))
 })
 
+app.patch('/api/v1/artists/:id', (request, response) => {
+  const { id } = request.params
+  const { body } = request
+  const missingProperties = []
+  const properties = ['name', 'genre']
+
+  properties.forEach(key => {
+    console.log(missingProperties)
+    if (!body[key]) {
+      missingProperties.push(key)
+    }
+  })
+  if (missingProperties.length > 1) {
+    return response.status(422).json({ message: `You must use either of these keys${missingProperties} in order to update data`})
+  }
+  console.log(body, missingProperties)
+
+  database('artists').where('id', id).update(body)
+    .then(row => response.status(206).json({ message:  `Number of rows updated ${row}`}))
+    .catch(error => {
+      console.log(error)
+      response.status(500).json({ error })
+  })
+})
+
 app.delete('/api/v1/artists/:id', (request, response) => {
   const { id } = request.params
 
