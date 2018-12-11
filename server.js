@@ -1,4 +1,5 @@
-const express = require('express');
+const express = require('express')
+const cors = require('cors')
 const app = express();
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
@@ -28,7 +29,8 @@ function checkParams(request, response, next) {
   }
 }
 
-app.use( express.json() );
+app.use(express.json());
+app.use(cors())
 
 app.use(express.static('public'));
 
@@ -39,12 +41,6 @@ app.set('port', process.env.PORT || 3000);
 app.get('/', (request, response) => {
   response.send('BYOB!');
 });
-
-app.use((request, response, next) => {
-  response.header('Access-Control-Allow-Origin', '*');
-  response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-})
 
 // /api/v1/artists
 app.get('/api/v1/artists', (request, response) => {
