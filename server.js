@@ -5,6 +5,39 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const database = require('knex')(config)
 
+function checkArtistParams(request, response, next) {
+  const artist = request.body
+  let missingProperties = []
+
+  for(let requiredProperty of ['name', 'genre']) {
+    if(artist[requiredProperty] === undefined) {
+      missingProperties = [...missingProperties, requiredProperty]
+    }
+  }
+
+  if(missingProperties.length) {
+    response.status(422).send({ message: `Missing ${missingProperties} in request` })
+  } else {
+    next()
+  }
+}
+
+function checkAlbumParams(request, response, next) {
+  const album = request.body;
+  let missingProperties = []
+
+  for (let requiredProperty of ['title', 'release_date']) {
+    if (!album[requiredProperty]) {
+      missingProperties = [...missingProperties, requiredProperty]
+    }
+  }
+  if (missingProperties.length) {
+    return response.status(422).json({message: `Missing ${missingProperties} in request`});
+  } else {
+    next()
+  }
+}
+
 app.use( bodyParser.json() );
 
 app.use(express.static('public'));
@@ -46,28 +79,15 @@ app.get('/api/v1/artists', (request, response) => {
   }
 })
 
-app.post('/api/v1/artists', (request, response) => {
+app.post('/api/v1/artists', checkArtistParams, (request, response) => {
   const artist = request.body
-
-  let missingProperties = []
-
-  for(let requiredProperty of ['name', 'genre']) {
-    if(artist[requiredProperty] === undefined) {
-      missingProperties = [...missingProperties, requiredProperty]
-    }
-  }
-
-  if(missingProperties.length) {
-    response.status(422).send({ message: `Missing ${missingProperties} in request` })
-  } else {
-    database('artists').insert(artist, 'id')
-      .then(artistIds => {
-        response.status(201).json({ id: artistIds[0] })
-      })
-      .catch(error => {
-        response.status(500).json({ error: error.message })
-      })
-  }
+  database('artists').insert(artist, 'id')
+    .then(artistIds => {
+      response.status(201).json({ id: artistIds[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
 })
 
 app.get('/api/v1/artists/:id', (request, response) => {
@@ -104,22 +124,9 @@ app.put('/api/v1/artists/:id', (request, response) => {
     })
 });
 
-// /api/v1/albums 
-app.post('/api/v1/albums', (request, response) => {
+// /api/v1/albums
+app.post('/api/v1/albums', checkAlbumParams, (request, response) => {
   const album = request.body;
-
-  if (!album) {
-    return response.status(422).json({ error: 'No album object provided' })
-  }
-
-  for (let requiredParameter of ['title', 'release_date']) {
-    if (!album[requiredParameter]) {
-      return response.status(422).json({error: `Expected format: {title: <STRING>, releaseDate: 
-        <STRING>. Missing the required parameter of ${requiredParameter}.`})
-    }
-
-  }
-
   database('albums').insert(album, 'id')
     .then(album => {
         response.status(201).json({ id: album[0] })
