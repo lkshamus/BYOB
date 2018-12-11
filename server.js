@@ -9,10 +9,10 @@ function checkParams(request, response, next) {
   const body = request.body
   let missingParams = []
   let params = []
-  if (request.url === '/api/v1/artists') {
+  if (request.url.includes('/api/v1/artists')) {
     params = ['name', 'genre']
   }
-  if (request.url === '/api/v1/albums') {
+  if (request.url.includes('/api/v1/albums')) {
     params = ['title', 'release_date']
   }
 
@@ -85,20 +85,9 @@ app.get('/api/v1/artists/:id', (request, response) => {
     .catch(error => console.log(`Error fetching artist: ${error.message}`))
 })
 
-app.patch('/api/v1/artists/:id', (request, response) => {
+app.patch('/api/v1/artists/:id', checkParams, (request, response) => {
   const { id } = request.params
   const { body } = request
-  const missingProperties = []
-  const properties = ['name', 'genre']
-
-  properties.forEach(key => {
-    if (!body[key]) {
-      missingProperties.push(key)
-    }
-  })
-  if (missingProperties.length > 1) {
-    return response.status(422).json({ message: `You must use either of these keys${missingProperties} in order to update data`})
-  }
 
   database('artists').where('id', id).update(body)
     .then(row => response.status(206).json({ message:  `Number of rows updated ${row}`}))
