@@ -211,6 +211,21 @@ describe('Server file', () => {
 			})
 		})
 
+		it('should update and album name when a patch request is made', (done) => {
+			const updatedAlbum = {
+				title: 'A Light At The Opera',
+				release_date: 1957
+			}
+
+			chai.request(app)
+				.patch('/api/v1/albums/398')
+				.send(updatedAlbum)
+				.end((error, response) => {
+					expect(response).to.have.status(200)
+					done()
+				})
+		})
+
 		it('should return a 500 status code if there no update specified for albums', (done) => {
 			const updateAlbum = {}
 
