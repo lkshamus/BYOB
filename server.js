@@ -92,7 +92,6 @@ app.patch('/api/v1/artists/:id', checkParams, (request, response) => {
   database('artists').where('id', id).update(body)
     .then(row => response.status(206).json({ message:  `Number of rows updated ${row}`}))
     .catch(error => {
-      console.log(error)
       response.status(500).json({ error })
   })
 }) 
@@ -136,6 +135,28 @@ app.post('/api/v1/albums', checkParams, (request, response) => {
 })
 
 app.get('/api/v1/albums', (request, response) => {
+  const { query, originalUrl } = request
+  
+  if (originalUrl.includes('?')) {
+    const missingParams = []
+    const params = ['title', 'release_date']
+    const foundParams = []
+
+    params.forEach(key => {
+      if(!query[key]) {
+        missingParams.push(key)
+      } else {
+        foundParams.push(key)
+      }
+    })
+    if (missingParams.length > 1) {
+      return response.status(422).json({ message: `You have violated the terms of our agreement. Please use at least one of these keys${missingParams} in your query`})
+    }
+
+    return database('albums').where(foundParams[0], query[foundParams[0]]).select()
+      .then(albums => response.status(200).json(albums))
+      .catch(error => response.status(500).json({ error }))
+  }
   database('albums').select()
     .then(albums => {
       response.status(200).json(albums)

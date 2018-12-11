@@ -92,7 +92,6 @@ describe('Server file', () => {
       const newAlbum = {
         name: 'Tell All Your Friends'
       }
-
       chai.request(app)
         .post('/api/v1/albums')
         .send(newAlbum)
@@ -100,6 +99,24 @@ describe('Server file', () => {
           expect(response).to.have.status(422)
           done()
         })
+    })
+    it('should return album with the specified param', done => {
+     	chai.request(app)
+        .get('/api/v1/albums/?release_date=1973')
+        .end((error, response) => {
+        	expect(error).to.be.null
+          expect(response).to.have.status(200)
+          done()
+        })
+    })
+    it('should return 422 if query param is not correct', done => {
+    	chai.request(app)
+    		.get('/api/v1/albums/?meow=zero')
+    		.end((error, response) => {
+    			expect(error).to.be.null
+    			expect(response).to.have.status(422)
+    			done()
+    		})
     })
 
 })
