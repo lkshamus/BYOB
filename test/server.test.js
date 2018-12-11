@@ -114,6 +114,35 @@ describe('Server file', () => {
 				})
 		})
 
+		it('should return status 206 if patched correctly', done => {
+			const artist = {
+				name: 'Bon Jovi',
+				genre: 'Jazz'
+			}
+			chai.request(app)
+				.patch('/api/v1/artists/8')
+				.send(artist)
+				.end((error, response) => {
+					expect(error).to.be.null
+					expect(response).to.have.status(206)
+					done()
+				})
+		})
+
+		it('should return status 422 if there are no correct params in body', done => {
+			const artist = {
+				boo: 'boo'
+			}
+			chai.request(app)
+				.patch('/api/v1/artists/8')
+				.send(artist)
+				.end((error, response) => {
+					expect(error).to.be.null
+					expect(response).to.have.status(422)
+					done()
+				})
+		})
+
 		it('should delete an artist when a DELETE request is made', (done) => {
 
 			chai.request(app)

@@ -9,10 +9,10 @@ function checkParams(request, response, next) {
   const body = request.body
   let missingParams = []
   let params = []
-  if (request.url === '/api/v1/artists') {
+  if (request.url.includes('/api/v1/artists')) {
     params = ['name', 'genre']
   }
-  if (request.url === '/api/v1/albums') {
+  if (request.url.includes('/api/v1/albums')) {
     params = ['title', 'release_date']
   }
 
@@ -84,6 +84,18 @@ app.get('/api/v1/artists/:id', (request, response) => {
     .then(artist => response.status(200).json(artist))
     .catch(error => console.log(`Error fetching artist: ${error.message}`))
 })
+
+app.patch('/api/v1/artists/:id', checkParams, (request, response) => {
+  const { id } = request.params
+  const { body } = request
+
+  database('artists').where('id', id).update(body)
+    .then(row => response.status(206).json({ message:  `Number of rows updated ${row}`}))
+    .catch(error => {
+      console.log(error)
+      response.status(500).json({ error })
+  })
+}) 
 
 app.delete('/api/v1/artists/:id', (request, response) => {
   const { id } = request.params
