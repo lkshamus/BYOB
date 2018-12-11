@@ -5,34 +5,25 @@ const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
 const database = require('knex')(config)
 
-function checkArtistParams(request, response, next) {
-  const artist = request.body
-  let missingProperties = []
+function checkParams(request, response, next) {
+  const body = request.body
+  let missingParams = []
+  let params = []
+  if (request.url === '/api/v1/artists') {
+    params = ['name', 'genre']
+  }
+  if (request.url === '/api/v1/albums') {
+    params = ['title', 'release_date']
+  }
 
-  for(let requiredProperty of ['name', 'genre']) {
-    if(artist[requiredProperty] === undefined) {
-      missingProperties = [...missingProperties, requiredProperty]
+  for(let requiredParam of params) {
+    if (!body[requiredParam]) {
+      missingParams = [...missingParams, requiredParam]
     }
   }
 
-  if(missingProperties.length) {
-    response.status(422).send({ message: `Missing ${missingProperties} in request` })
-  } else {
-    next()
-  }
-}
-
-function checkAlbumParams(request, response, next) {
-  const album = request.body;
-  let missingProperties = []
-
-  for (let requiredProperty of ['title', 'release_date']) {
-    if (!album[requiredProperty]) {
-      missingProperties = [...missingProperties, requiredProperty]
-    }
-  }
-  if (missingProperties.length) {
-    return response.status(422).json({message: `Missing ${missingProperties} in request`});
+  if (missingParams.length) {
+    response.status(422).send({ message: `Missing ${missingParams} in request`})
   } else {
     next()
   }
@@ -79,7 +70,7 @@ app.get('/api/v1/artists', (request, response) => {
   }
 })
 
-app.post('/api/v1/artists', checkArtistParams, (request, response) => {
+app.post('/api/v1/artists', checkParams, (request, response) => {
   const artist = request.body
   database('artists').insert(artist, 'id')
     .then(artistIds => {
@@ -125,7 +116,7 @@ app.put('/api/v1/artists/:id', (request, response) => {
 });
 
 // /api/v1/albums
-app.post('/api/v1/albums', checkAlbumParams, (request, response) => {
+app.post('/api/v1/albums', checkParams, (request, response) => {
   const album = request.body;
   database('albums').insert(album, 'id')
     .then(album => {
