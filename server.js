@@ -95,7 +95,7 @@ app.patch('/api/v1/artists/:id', checkParams, (request, response) => {
       console.log(error)
       response.status(500).json({ error })
   })
-})
+}) 
 
 app.delete('/api/v1/artists/:id', (request, response) => {
   const { id } = request.params
