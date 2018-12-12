@@ -9,10 +9,10 @@ function checkParams(request, response, next) {
   const body = request.body
   let missingParams = []
   let params = []
-  if (request.url === '/api/v1/artists') {
+  if (request.url.includes('/api/v1/artists')) {
     params = ['name', 'genre']
   }
-  if (request.url === '/api/v1/albums') {
+  if (request.url.includes('/api/v1/albums')) {
     params = ['title', 'release_date']
   }
 
