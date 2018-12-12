@@ -1,15 +1,58 @@
+<h1 id="byob">BYOB</h1>
+<h2 id="abouttheapi">About the API</h2>
+<p>BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests. </p>
+<h4 id="forinstructionsonhowtocontributeseethisfilehttpsgithubcomlkshamusbyobblobmastercontributingmd">For instructions on how to contribute, see <a href="https://github.com/lkshamus/BYOB/blob/master/CONTRIBUTING.md">this file</a>.</h4>
+<h2 id="gettingstarted">Getting Started</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>In order to use the api, you must have the following installed:</p>
+<ul>
+<li><a href="https://nodejs.org/en/">Node.js</a></li>
+<li><a href="https://nodejs.org/en/">NPM</a></li>
+</ul>
+<h3 id="installation">Installation</h3>
+<p>Clone down this repo </p>
+<p><code>git clone https://github.com/lkshamus/BYOB.git</code></p>
+<p>Next install dependencies </p>
+<p><code>npm install</code> </p>
+<p>This will install </p>
+<ul>
+<li>Express</li>
+<li>Body-parser</li>
+<li>Knex</li>
+<li>PostgreSQL Database</li>
+<li>Mocha</li>
+<li>Chai</li>
+<li>Chai HTTP</li>
+</ul>
+<p>Start the server with
+<code>node server.js</code>
+(or <code>nodemon</code> if you have it installed).</p>
+<h3 id="createlocaldatabase">Create local database</h3>
+<p>Create database in PostgreSQL: </p>
+<p><code>psql</code></p>
+<p><code>CREATE DATABASE albumfinder;</code></p>
+<p>Run migrations using: </p>
+<p><code>knex migrate:latest</code></p>
+<p>Seed database:</p>
+<p><code>knex seed:run</code></p>
+<h2 id="runningtests">Running Tests</h2>
+<h3 id="createlocaltestingenvironment">Create local testing environment</h3>
+<p>Create test database in PostgreSQL: </p>
+<p><code>psql</code></p>
+<p><code>CREATE DATABASE albumfindertests;</code></p>
+<p>Run migrations using: </p>
+<p><code>NODE_ENV=test knex migrate:latest</code></p>
+<p>Seed test database:</p>
+<p><code>NODE_ENV=test knex seed:run</code></p>
+<p>To run the test suite</p>
+<p><code>npm run test</code></p>
 <h2 id="endpoints">Endpoints</h2>
-
 <h2 id="apiv1artists">/api/v1/artists</h2>
-
 <p><strong>To return all artists:</strong></p>
-
-<pre><code class="`GET /api/v1/artists```` language-`GET /api/v1/artists````">Expect response to be:
-</code></pre>
-
-<p>`Status: 200````</p>
-
-<pre><code class="` language-`">[
+<p><code>GET /api/v1/artists</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>[
     {
         "id": 1,
         "name": "Queen",
@@ -26,46 +69,30 @@
     },
   ...
 ]
- ````
-
-**To return a specific artist:**
 </code></pre>
-
-<p>`GET /api/v1/artists/:id````</p>
-
+<p><strong>To return a specific artist:</strong></p>
+<p><code>GET /api/v1/artists/:id</code></p>
 <p>You must pass the artist id in as a parameter to the endpoint.</p>
-
 <p>Expect response to be:</p>
-
-<pre><code class="`Status: 200```` language-`Status: 200````">
-</code></pre>
-
-<p>`
-[
+<p><code>Status: 200</code></p>
+<pre><code>[
     {
         "id": 17,
         "name": "Mariah Carey",
         "genre": "hip-hop",
-        "created<em>at": "2018-12-05T15:41:02.011Z",
-        "updated</em>at": "2018-12-05T15:41:02.011Z"
+        "created_at": "2018-12-05T15:41:02.011Z",
+        "updated_at": "2018-12-05T15:41:02.011Z"
     }
-]</p>
-
-<pre><code class="` language-`">**To search for a particular artist without having their id**
+]
 </code></pre>
-
-<p>`GET /api/v1/artists?name= ```` write artist name next to the equal sign</p>
-
+<p><strong>To search for a particular artist without having their id</strong></p>
+<p><code>GET /api/v1/artists?name=</code> write artist name next to the equal sign</p>
 <p>example: </p>
-
-<pre><code class="`/api/v1/artists?name=Queen```` language-`/api/v1/artists?name=Queen````">Expect response to be:
-</code></pre>
-
-<p>`Status: 200````</p>
-
+<p><code>/api/v1/artists?name=Queen</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
 <p>Your search result will return: </p>
-
-<pre><code class="`  language-` ">[
+<pre><code>[
     {
         "id": 27,
         "name": "Queen",
@@ -75,81 +102,49 @@
     }
 ]
 </code></pre>
-
-<p>`</p>
-
-<pre><code class="`POST /api/v1/artists```` language-`POST /api/v1/artists````">Body of request must be in JSON format with the following propeties:
-</code></pre>
-
-<p>`
-{
+<p><code>POST /api/v1/artists</code></p>
+<p>Body of request must be in JSON format with the following propeties:</p>
+<pre><code>{
     "name":[string],
     "genre":[string]
-}</p>
-
-<pre><code class="` language-`">Expect response to be:
+}
 </code></pre>
-
-<p>`Status: 201````</p>
-
-<pre><code class="` language-`">{
+<p>Expect response to be:
+<code>Status: 201</code></p>
+<pre><code>{
   "id": 5
 }
 </code></pre>
-
-<p>`
-<strong>To delete an artist:</strong></p>
-
-<pre><code class="`DELETE /api/v1/artists/:id```` language-`DELETE /api/v1/artists/:id````">You must pass the artist id in as a parameter to the endpoint.
-
-
-Expect response to be:
-</code></pre>
-
-<p>`Status: 201````</p>
-
-<pre><code class="` language-`">{
+<p><strong>To delete an artist:</strong></p>
+<p><code>DELETE /api/v1/artists/:id</code></p>
+<p>You must pass the artist id in as a parameter to the endpoint.</p>
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
   "id": 3
 }
 </code></pre>
-
-<p>`
-<strong>To edit an artist of your choice:</strong></p>
-
-<pre><code class="`PUT /api/v1/artists/:id```` language-`PUT /api/v1/artists/:id````">You must pass the artist id in as a parameter to the endpoint.
-
-
-Body of request must be in JSON format with the following propeties:
-</code></pre>
-
-<p>`
-{
+<p><strong>To edit an artist of your choice:</strong></p>
+<p><code>PUT /api/v1/artists/:id</code></p>
+<p>You must pass the artist id in as a parameter to the endpoint.</p>
+<p>Body of request must be in JSON format with the following propeties:</p>
+<pre><code>{
     "name":[string],
     "genre":[string]
-}</p>
-
-<pre><code class="` language-`">Expect response to be:
+}
 </code></pre>
-
-<p>`Status: 200````</p>
-
-<pre><code class="` language-`">{
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>{
   "id": 9
 }
 </code></pre>
-
-<p>`</p>
-
 <h2 id="apiv1albums">/api/v1/albums</h2>
-
 <p><strong>To return all albums:</strong></p>
-
-<pre><code class="`GET /api/v1/albums```` language-`GET /api/v1/albums````">Expect response to be:
-</code></pre>
-
-<p>`Status: 200````</p>
-
-<pre><code class="`    language-`   ">[
+<p><code>GET /api/v1/albums</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>[
     {
         "id": 1,
         "title": "Queen",
@@ -169,20 +164,12 @@ Body of request must be in JSON format with the following propeties:
    ...
 ]
 </code></pre>
-
-<p>`</p>
-
 <p><strong>To return all albums from an artist of your choice:</strong></p>
-
-<pre><code class="`GET /api/v1/albums/:id```` language-`GET /api/v1/albums/:id````">You must pass the album id in as a parameter to the endpoint.
-
-
-Expect response to be:
-</code></pre>
-
-<p>`Status: 200````</p>
-
-<pre><code class="` language-`">[
+<p><code>GET /api/v1/albums/:id</code></p>
+<p>You must pass the album id in as a parameter to the endpoint.</p>
+<p>Expect response to be: </p>
+<p><code>Status: 200</code></p>
+<pre><code>[
     {
         "id": 5,
         "title": "A Day At The Races",
@@ -193,73 +180,44 @@ Expect response to be:
     }
 ]
 </code></pre>
-
-<p>`</p>
-
 <p><strong>To add an artist:</strong></p>
-
 <p><strong>To add an album to an artist of your choice:</strong></p>
-
-<pre><code class="`POST /api/v1/albums```` language-`POST /api/v1/albums````">Body of request must be in JSON format with the following properties:
-</code></pre>
-
-<p>`
-{
+<p><code>POST /api/v1/albums</code></p>
+<p>Body of request must be in JSON format with the following properties:</p>
+<pre><code>{
     "title":[string],
     "release_date":[boolean]
-}</p>
-
-<pre><code class="` language-`">Expect response to be:
+}
 </code></pre>
-
-<p>`Status: 201````</p>
-
-<pre><code class="` language-`">{
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
   "id": 9
 }
 </code></pre>
-
-<p>`</p>
-
 <p><strong>To delete an album:</strong></p>
-
-<pre><code class="`DELETE /api/v1/albums/:id```` language-`DELETE /api/v1/albums/:id````">You must pass the album id in as a parameter to the endpoint.
-
-
-Expect response to be:
-</code></pre>
-
-<p>`Status: 201````</p>
-
-<pre><code class="` language-`">{
+<p><code>DELETE /api/v1/albums/:id</code></p>
+<p>You must pass the album id in as a parameter to the endpoint.</p>
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
   "id": 4
 }
 </code></pre>
-
-<p>`</p>
-
 <p><strong>To edit an album of your choice:</strong></p>
-
-<pre><code class="`PUT /api/v1/albums/:id```` language-`PUT /api/v1/albums/:id````">You must the album id in as a parameter to the endpoint.
-
-
-Body of request must be in JSON format with the following properties:
-</code></pre>
-
-<p>`
-{
+<p><code>PUT /api/v1/albums/:id</code></p>
+<p>You must the album id in as a parameter to the endpoint.</p>
+<p>Body of request must be in JSON format with the following properties:</p>
+<pre><code>{
     "title":[string],
     "release_date":[boolean]
-}</p>
-
-<pre><code class="` language-`">Expect response to be:
+}
 </code></pre>
-
-<p>`Status: 200````</p>
-
-<pre><code class="` language-`">{
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>{
   "id": 8
 }
 </code></pre>
-
-<p>`</p>
+<h2 id="contributors">Contributors</h2>
+<p><a href="https://github.com/hljacobs5">Haley Jacobs</a> &amp; <a href="https://github.com/lkshamus">Laura Shamus</a></p>
