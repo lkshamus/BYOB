@@ -1,0 +1,231 @@
+<h1 class="byob">BYOB</h1>
+<h2 class="about">About the API</h2>
+<p>BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests. </p>
+<h4 class="instructions">For instructions on how to contribute, see <a href="https://github.com/lkshamus/BYOB/blob/master/CONTRIBUTING.md">this file</a>.</h4>
+
+<h2 class="gettingstarted">Getting Started</h2>
+<h3 class="prerequisites">Prerequisites</h3>
+<p>In order to use the api, you must have the following installed:</p>
+<ul>
+    <li><a href="https://nodejs.org/en/">Node.js</a></li>
+    <li><a href="https://nodejs.org/en/">NPM</a></li>
+</ul>
+
+<h3 class="installation">Installation</h3>
+<p>Clone down this repo </p>
+<p><code>git clone https://github.com/lkshamus/BYOB.git</code></p>
+<p>Next install dependencies </p>
+<p><code>npm install</code> </p>
+<p>This will install </p>
+<ul>
+    <li>Express</li>
+    <li>Body-parser</li>
+    <li>Knex</li>
+    <li>PostgreSQL Database</li>
+    <li>Mocha</li>
+    <li>Chai</li>
+    <li>Chai HTTP</li>
+</ul>
+<p>Start the server with
+<code>node server.js</code>
+(or <code>nodemon</code> if you have it installed).</p>
+
+<h3 class="createlocaldatabase">Create local database</h3>
+<p>Create database in PostgreSQL: </p>
+<p><code>psql</code></p>
+<p><code>CREATE DATABASE albumfinder;</code></p>
+<p>Run migrations using: </p>
+<p><code>knex migrate:latest</code></p>
+<p>Seed database:</p>
+<p><code>knex seed:run</code></p>
+
+<h2 class="runningtests">Running Tests</h2>
+<h3 class="testingenvironment">Create local testing environment</h3>
+<p>Create test database in PostgreSQL: </p>
+<p><code>psql</code></p>
+<p><code>CREATE DATABASE albumfindertests;</code></p>
+<p>Run migrations using: </p>
+<p><code>NODE_ENV=test knex migrate:latest</code></p>
+<p>Seed test database:</p>
+<p><code>NODE_ENV=test knex seed:run</code></p>
+<p>To run the test suite</p>
+<p><code>npm run test</code></p>
+
+<h2 class="endpoints">Endpoints</h2>
+
+<h2 class="apiv1artists">/api/v1/artists</h2>
+<p><strong>To return all artists:</strong></p>
+<p><code>GET /api/v1/artists</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>[
+    {
+        "id": 1,
+        "name": "Queen",
+        "genre": "Classic Rock",
+        "created_at": "2018-12-05T15:41:01.994Z",
+        "updated_at": "2018-12-05T15:41:01.994Z"
+    },
+    {
+        "id": 3,
+        "name": "Pentatonix",
+        "genre": "Pop",
+        "created_at": "2018-12-05T15:41:02.003Z",
+        "updated_at": "2018-12-05T15:41:02.003Z"
+    },
+  ...
+]
+</code></pre>
+<p><strong>To return a specific artist:</strong></p>
+<p><code>GET /api/v1/artists/:id</code></p>
+<p>You must pass the artist id in as a parameter to the endpoint.</p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>[
+    {
+        "id": 17,
+        "name": "Mariah Carey",
+        "genre": "hip-hop",
+        "created_at": "2018-12-05T15:41:02.011Z",
+        "updated_at": "2018-12-05T15:41:02.011Z"
+    }
+]
+</code></pre>
+<p><strong>To search for a particular artist without having their id</strong></p>
+<p><code>GET /api/v1/artists?name=</code> write artist name next to the equal sign</p>
+<p>example: </p>
+<p><code>/api/v1/artists?name=Queen</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<p>Your search result will return: </p>
+<pre><code>[
+    {
+        "id": 27,
+        "name": "Queen",
+        "genre": "Classic Rock",
+        "created_at": "2018-12-05T15:46:25.764Z",
+        "updated_at": "2018-12-05T15:46:25.764Z"
+    }
+]
+</code></pre>
+<p><code>POST /api/v1/artists</code></p>
+<p>Body of request must be in JSON format with the following propeties:</p>
+<pre><code>{
+    "name":[string],
+    "genre":[string]
+}
+</code></pre>
+<p>Expect response to be:
+<code>Status: 201</code></p>
+<pre><code>{
+  "id": 5
+}
+</code></pre>
+<p><strong>To delete an artist:</strong></p>
+<p><code>DELETE /api/v1/artists/:id</code></p>
+<p>You must pass the artist id in as a parameter to the endpoint.</p>
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
+  "id": 3
+}
+</code></pre>
+<p><strong>To edit an artist of your choice:</strong></p>
+<p><code>PUT /api/v1/artists/:id</code></p>
+<p>You must pass the artist id in as a parameter to the endpoint.</p>
+<p>Body of request must be in JSON format with the following propeties:</p>
+<pre><code>{
+    "name":[string],
+    "genre":[string]
+}
+</code></pre>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>{
+  "id": 9
+}
+</code></pre>
+
+<h2 class="apiv1albums">/api/v1/albums</h2>
+<p><strong>To return all albums:</strong></p>
+<p><code>GET /api/v1/albums</code></p>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>[
+    {
+        "id": 1,
+        "title": "Queen",
+        "release_date": "1973",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.019Z",
+        "updated_at": "2018-12-05T15:41:02.019Z"
+    },
+    {
+        "id": 2,
+        "title": "Queen II",
+        "release_date": "1974",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.019Z",
+        "updated_at": "2018-12-05T15:41:02.019Z"
+    },
+   ...
+]
+</code></pre>
+<p><strong>To return all albums from an artist of your choice:</strong></p>
+<p><code>GET /api/v1/albums/:id</code></p>
+<p>You must pass the album id in as a parameter to the endpoint.</p>
+<p>Expect response to be: </p>
+<p><code>Status: 200</code></p>
+<pre><code>[
+    {
+        "id": 5,
+        "title": "A Day At The Races",
+        "release_date": "1976",
+        "artist_id": 1,
+        "created_at": "2018-12-05T15:41:02.021Z",
+        "updated_at": "2018-12-05T15:41:02.021Z"
+    }
+]
+</code></pre>
+<p><strong>To add an artist:</strong></p>
+<p><strong>To add an album to an artist of your choice:</strong></p>
+<p><code>POST /api/v1/albums</code></p>
+<p>Body of request must be in JSON format with the following properties:</p>
+<pre><code>{
+    "title":[string],
+    "release_date":[boolean]
+}
+</code></pre>
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
+  "id": 9
+}
+</code></pre>
+<p><strong>To delete an album:</strong></p>
+<p><code>DELETE /api/v1/albums/:id</code></p>
+<p>You must pass the album id in as a parameter to the endpoint.</p>
+<p>Expect response to be:</p>
+<p><code>Status: 201</code></p>
+<pre><code>{
+  "id": 4
+}
+</code></pre>
+<p><strong>To edit an album of your choice:</strong></p>
+<p><code>PUT /api/v1/albums/:id</code></p>
+<p>You must the album id in as a parameter to the endpoint.</p>
+<p>Body of request must be in JSON format with the following properties:</p>
+<pre><code>{
+    "title":[string],
+    "release_date":[boolean]
+}
+</code></pre>
+<p>Expect response to be:</p>
+<p><code>Status: 200</code></p>
+<pre><code>{
+  "id": 8
+}
+</code></pre>
+
+<h2 class="contributors">Contributors</h2>
+<p><a href="https://github.com/hljacobs5">Haley Jacobs</a> &amp; <a href="https://github.com/lkshamus">Laura Shamus</a></p>
