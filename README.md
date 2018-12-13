@@ -3,6 +3,10 @@
 
 BYOB is an API that provides data about the top 30 music artists and their albums. Users can add data to the API through POST requests, delete data with DELETE requests, and edit data with PUT requests. 
 
+## See it Live 
+
+[BYOB](https://album-finder-byob.herokuapp.com/)
+
 #### For instructions on how to contribute, see [this file](https://github.com/lkshamus/BYOB/blob/master/CONTRIBUTING.md).
 
 ## Getting Started
